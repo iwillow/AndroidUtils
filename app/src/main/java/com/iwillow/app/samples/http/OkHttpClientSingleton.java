@@ -23,7 +23,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by ddx on 2017/4/17.
+ * Created by https://github.com/iwillow on 2017/4/17.
  */
 
 public class OkHttpClientSingleton implements HttpRequestInterface {
