@@ -5,4 +5,8 @@
     <color name="time_up_color">#fc0001</color>
     <color name="timer_inner_fill_color">#313131</color>
     <color name="timer_inner_stroke_color">#bababa</color>
+
+    <color name="dotColor">#FF12A9EA</color>
+    <color name="default_innerCircleColor">#FF6AC6F0</color>
+    <color name="default_innerOuterCircleColor">#FF6AC6F0</color>
 </resources>

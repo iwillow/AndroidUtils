@@ -2,7 +2,6 @@ package com.iwillow.app.android.ui.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +18,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.iwillow.app.android.R;
+
+import static com.iwillow.app.android.util.DimenUtil.dp2px;
 
 
 /**
@@ -432,15 +433,6 @@ public class ColorScaleView extends View {
         return Color.TRANSPARENT;
     }
 
-    private float dp2px(Resources resources, float dp) {
-        final float scale = resources.getDisplayMetrics().density;
-        return dp * scale + 0.5f;
-    }
-
-    private float sp2px(Resources resources, float sp) {
-        final float scale = resources.getDisplayMetrics().scaledDensity;
-        return sp * scale;
-    }
 
     public interface OnColorSelectedListener {
 

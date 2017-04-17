@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">app-lib</string>
+
+    <string name="remote_control_direction_left">Left</string>
+    <string name="remote_control_direction_right">Right</string>
+    <string name="remote_control_direction_forward">Forward</string>
+    <string name="remote_control_direction_backward">Backward</string>
 </resources>

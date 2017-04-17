@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RemoteControlBallView">
+        <!--radius -->
+        <attr name="radiusInnerCircle" format="float" />
+        <attr name="radiusInnerCircleMoving" format="float" />
+        <attr name="radiusMiddleCircle" format="float" />
+        <attr name="radiusMiddleCircleMoving" format="float" />
+        <attr name="radiusOuterCircle" format="float" />
+        <attr name="radiusOuterCircleMoving" format="float" />
+        <!--color -->
+        <attr name="colorInnerCircle" format="color" />
+        <attr name="colorInnerCircleMoving" format="color" />
+        <attr name="colorMiddleCircle" format="color" />
+        <attr name="colorMiddleCircleMoving" format="color" />
+        <attr name="colorOuterCircle" format="color" />
+        <attr name="colorOuterCircleMoving" format="color" />
+
+        <!--stroke width -->
+        <attr name="strokeWidthInnerCircle" format="dimension" />
+        <attr name="strokeWidthInnerCircleMoving" format="dimension" />
+        <attr name="strokeWidthMiddleCircle" format="dimension" />
+        <attr name="strokeWidthMiddleCircleMoving" format="dimension" />
+        <attr name="strokeWidthOuterCircle" format="dimension" />
+        <attr name="strokeWidthOuterCircleMoving" format="dimension" />
+
+        <!-- direction Text -->
+        <attr name="textSizeDirection" format="dimension" />
+        <attr name="textColorDirection" format="color" />
+
+        <!-- Triangle  -->
+        <attr name="triangleColor" format="color" />
+        <attr name="triangleSingleEdgeLength" format="dimension" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RemoteControlView">
+
+        <!--方向说明 -->
+        <attr name="directionTextSize" format="dimension" />
+        <attr name="directionTextSizeMoving" format="dimension" />
+        <attr name="directionTextColor" format="color" />
+        <attr name="directionTextColorMoving" format="color" />
+
+        <!-- 三角形  -->
+        <attr name="directionTriangleColor" format="color" />
+        <attr name="directionTriangleColorMoving" format="color" />
+        <attr name="directionTriangleEdge" format="dimension" />
+        <attr name="directionTriangleEdgeMoving" format="dimension" />
+        <attr name="directionTriangleStrokeWidth" format="dimension" />
+        <attr name="directionTriangleStrokeWidthMoving" format="dimension" />
+
+        <!-- 最外层的圆  -->
+        <attr name="circleOuterColor" format="color" />
+        <attr name="circleOuterColorMoving" format="color" />
+        <attr name="circleOuterStrokeWidth" format="dimension" />
+        <attr name="circleOuterStrokeWidthMoving" format="dimension" />
+        <attr name="circleOuterRadiusFraction" format="float" />
+        <attr name="circleOuterRadiusFractionMoving" format="float" />
+
+
+        <!-- 挨着最外层的圆  -->
+        <attr name="circleOuterInnerColor" format="color" />
+        <attr name="circleOuterInnerColorMoving" format="color" />
+        <attr name="circleOuterInnerStrokeWidth" format="dimension" />
+        <attr name="circleOuterInnerStrokeWidthMoving" format="dimension" />
+        <attr name="circleOuterInnerRadiusFraction" format="float" />
+        <attr name="circleOuterInnerRadiusFractionMoving" format="float" />
+
+        <!-- 最内层的圆  -->
+        <attr name="circleInnerColor" format="color" />
+        <attr name="circleInnerColorMoving" format="color" />
+        <attr name="circleInnerStrokeWidth" format="dimension" />
+        <attr name="circleInnerStrokeWidthMoving" format="dimension" />
+        <attr name="circleInnerRadiusFraction" format="float" />
+        <attr name="circleInnerRadiusFractionMoving" format="float" />
+
+        <!-- 挨着最内层的圆的外面的圆  -->
+        <attr name="circleInnerOuterColor" format="color" />
+        <attr name="circleInnerOuterColorMoving" format="color" />
+        <attr name="circleInnerOuterStrokeWidth" format="dimension" />
+        <attr name="circleInnerOuterStrokeWidthMoving" format="dimension" />
+        <attr name="circleInnerOuterRadiusFraction" format="float" />
+        <attr name="circleInnerOuterRadiusFractionMoving" format="float" />
+
+
+        <!-- 控制器圆 -->
+        <attr name="circleControlColor" format="color" />
+        <attr name="circleControlColorMoving" format="color" />
+        <attr name="circleControlStrokeWidth" format="dimension" />
+        <attr name="circleControlStrokeWidthMoving" format="dimension" />
+        <attr name="circleControlRadiusFraction" format="float" />
+        <attr name="circleControlRadiusFractionMoving" format="float" />
+
+
+        <!-- 控制器圆内部圆-->
+        <attr name="circleControlInnerColor" format="color" />
+        <attr name="circleControlInnerColorMoving" format="color" />
+        <attr name="circleControlInnerStrokeWidth" format="dimension" />
+        <attr name="circleControlInnerStrokeWidthMoving" format="dimension" />
+        <attr name="circleControlInnerRadiusFraction" format="float" />
+        <attr name="circleControlInnerRadiusFractionMoving" format="float" />
+
+
+    </declare-styleable>
+
+    <declare-styleable name="SpeedSeekBar">
+        <attr name="layoutOrientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="GestureInstrumentView">
+        <attr name="gestureInstrumentView_dotHorizontalGap" format="dimension" />
+        <attr name="gestureInstrumentView_dotColor" format="color" />
+        <attr name="gestureInstrumentView_dotWidth" format="dimension" />
+        <attr name="gestureInstrumentView_dotThickness" format="dimension" />
+        <attr name="gestureInstrumentView_containerPadding" format="dimension" />
+        <attr name="gestureInstrumentView_innerOuterCircleStokeWidth" format="dimension" />
+        <attr name="gestureInstrumentView_controlCircleStokeWidth" format="dimension" />
+        <attr name="gestureInstrumentView_controlCircleColor" format="color" />
+        <attr name="gestureInstrumentView_controlCircleInnerColor" format="color" />
+        <attr name="gestureInstrumentView_innerCircleColor" format="color" />
+        <attr name="gestureInstrumentView_innerOuterCircleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="GravityInstrumentView">
+        <attr name="gravityInstrumentView_dotHorizontalGap" format="dimension" />
+        <attr name="gravityInstrumentView_dotColor" format="color" />
+        <attr name="gravityInstrumentView_dotWidth" format="dimension" />
+        <attr name="gravityInstrumentView_dotThickness" format="dimension" />
+        <attr name="gravityInstrumentView_containerPadding" format="dimension" />
+        <attr name="gravityInstrumentView_innerOuterCircleStokeWidth" format="dimension" />
+        <attr name="gravityInstrumentView_controlCircleStokeWidth" format="dimension" />
+        <attr name="gravityInstrumentView_controlCircleColor" format="color" />
+        <attr name="gravityInstrumentView_controlCircleInnerColor" format="color" />
+        <attr name="gravityInstrumentView_innerCircleColor" format="color" />
+        <attr name="gravityInstrumentView_innerOuterCircleColor" format="color" />
+    </declare-styleable>
+
+</resources>

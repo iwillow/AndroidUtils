@@ -16,6 +16,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 
+import static com.iwillow.app.android.util.DimenUtil.dp2px;
+
 /**
  * Created by ddx on 2017/3/30.
  */
@@ -192,15 +194,6 @@ public class CircleRadioView extends View {
         mAnimator.start();
     }
 
-    private float dp2px(Resources resources, float dp) {
-        final float scale = resources.getDisplayMetrics().density;
-        return dp * scale + 0.5f;
-    }
-
-    private float sp2px(Resources resources, float sp) {
-        final float scale = resources.getDisplayMetrics().scaledDensity;
-        return sp * scale;
-    }
 
     public void enableControl(boolean enableControl) {
         if (mEnableControl != enableControl) {

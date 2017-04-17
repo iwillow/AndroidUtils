@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="remote_control_direction_left">左</string>
+    <string name="remote_control_direction_right">右</string>
+    <string name="remote_control_direction_forward">前</string>
+    <string name="remote_control_direction_backward">后</string>
+</resources>
