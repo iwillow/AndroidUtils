@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="time_default_color">#12aaeb</color>
+    <color name="time_warning_color">#fc6f20</color>
+    <color name="time_up_color">#fc0001</color>
+    <color name="timer_inner_fill_color">#313131</color>
+    <color name="timer_inner_stroke_color">#bababa</color>
+</resources>
