@@ -1,2 +1,2 @@
 # AndroidSamples
-init AndroidSamples
+android code notes
