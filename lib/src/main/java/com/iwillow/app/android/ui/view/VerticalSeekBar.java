@@ -137,7 +137,7 @@ public class VerticalSeekBar extends AppCompatSeekBar {
         float scale;
         float progress = 0;
 
-        // 下面是最小值
+        // min
         if (y > height - bottom) {
             scale = 0.0f;
         } else if (y < top) {

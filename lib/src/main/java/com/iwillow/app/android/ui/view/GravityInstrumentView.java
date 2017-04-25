@@ -32,7 +32,7 @@ import static com.iwillow.app.android.util.DimenUtil.dp2px;
 
 public class GravityInstrumentView extends View {
     private float mContainerPadding;
-    private float mRadius; //外圆半径
+    private float mRadius; //the outer circle radius
     private float mTheta;
     private float mProgressX;
     private float mProgressY;
@@ -310,14 +310,14 @@ public class GravityInstrumentView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = (int) dp2px(getResources(), 10000); //设定一个最小值
+        int width = (int) dp2px(getResources(), 10000); //min
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (widthMode == MeasureSpec.AT_MOST || widthMode == MeasureSpec.UNSPECIFIED || heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED) {
             width = (int) dp2px(getResources(), 150);
-        } else { //至少有一个为确定值,要获取其中的最小值
+        } else {
             if (widthMode == MeasureSpec.EXACTLY) {
                 width = Math.min(widthSize, width);
             }
@@ -419,7 +419,7 @@ public class GravityInstrumentView extends View {
     }
 
     private void drawBackgroundBitmap(Canvas canvas) {
-        int width = this.getWidth();    //获取宽度
+        int width = this.getWidth();
         int height = this.getHeight();
         int left = width / 2 - mBackgroundScaleBmp.getWidth() / 2;
         int top = height / 2 - mBackgroundScaleBmp.getHeight() / 2;
@@ -531,7 +531,7 @@ public class GravityInstrumentView extends View {
     private void calibrateXY(float x, float y) {
         float x1, y1;
         float theta;
-        if (x > mCircleX && y < mCircleY) {//第一象限
+        if (x > mCircleX && y < mCircleY) {//the first quadrant
             theta = (float) Math.atan((mCircleY - y) / (x - mCircleX));
             x1 = (float) (mCircleX + mMaxDistance * Math.cos(theta));
             y1 = (float) (mCircleY - mMaxDistance * Math.sin(theta));
@@ -542,7 +542,7 @@ public class GravityInstrumentView extends View {
                 y = y1;
             }
             mTheta = (float) (90 - 180 * theta / Math.PI);
-        } else if (x > mCircleX && y > mCircleY) { //第二象限
+        } else if (x > mCircleX && y > mCircleY) { //the second quadrant
             theta = (float) Math.atan((y - mCircleY) / (x - mCircleX));
             x1 = (float) (mCircleX + mMaxDistance * Math.cos(theta));
             y1 = (float) (mCircleY + mMaxDistance * Math.sin(theta));
@@ -554,7 +554,7 @@ public class GravityInstrumentView extends View {
             }
             mTheta = (float) (90 + 180 * theta / Math.PI);
 
-        } else if (x < mCircleX && y > mCircleY) {   //第三象限
+        } else if (x < mCircleX && y > mCircleY) {   //the third quadrant
             theta = (float) (Math.atan((y - mCircleY) / (mCircleX - x)));
             x1 = (float) (mCircleX - mMaxDistance * Math.cos(theta));
             y1 = (float) (mCircleY + mMaxDistance * Math.sin(theta));
@@ -566,7 +566,7 @@ public class GravityInstrumentView extends View {
             }
             mTheta = (float) (270 - 180 * theta / Math.PI);
 
-        } else if (x < mCircleX && y < mCircleY) {//第四象限
+        } else if (x < mCircleX && y < mCircleY) { //the fourth quadrant
             theta = (float) (Math.atan((mCircleY - y) / (mCircleX - x)));
             x1 = (float) (mCircleX - mMaxDistance * Math.cos(theta));
             y1 = (float) (mCircleY - mMaxDistance * Math.sin(theta));
@@ -578,7 +578,7 @@ public class GravityInstrumentView extends View {
             }
             mTheta = (float) (270 + 180 * theta / Math.PI);
 
-        } else if (x == mCircleX && y != mCircleY) {//Y轴
+        } else if (x == mCircleX && y != mCircleY) {//Y axis
             if (y > mCircleY + mMaxDistance) {
                 y = mCircleY + mMaxDistance;
                 mTheta = 0;
@@ -587,7 +587,7 @@ public class GravityInstrumentView extends View {
                 mTheta = 180f;
             }
 
-        } else if (y == mCircleY && x != mCircleX) {//X轴
+        } else if (y == mCircleY && x != mCircleX) {//X axis
             if (x > mCircleX + mMaxDistance) {
                 x = mCircleX + mMaxDistance;
                 mTheta = 270f;

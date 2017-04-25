@@ -84,7 +84,7 @@ public class RemoteControlView extends View {
     private boolean mOnInnerCircleTouched;
     private int mSlop;
 
-    //文字参数
+    //text parameters
     private TextPaint mDirectionTextPaint;
     private TextPaint mDirectionTextPaintMoving;
     private int mDirectionTextColor;
@@ -98,7 +98,7 @@ public class RemoteControlView extends View {
 
     private boolean mEnableControl = true;
 
-    //三角形参数
+    //triangle parameters
     private Paint mDirectionTrianglePaint;
     private Paint mDirectionTrianglePaintMoving;
     private int mDirectionTriangleColor;
@@ -113,7 +113,7 @@ public class RemoteControlView extends View {
     private float mTriangleTopX, mTriangleTopY;
 
 
-    //最外围的圆的参数
+    //the outer circle parameters
     private Paint mCircleOuterPaint;
     private Paint mCircleOuterPaintMoving;
     private int mCircleOuterColor;
@@ -126,7 +126,7 @@ public class RemoteControlView extends View {
     private float mCircleOuterRadiusMoving;
 
 
-    //紧挨着最外围的内部圆的参数
+    //CircleOuterInner
     private Paint mCircleOuterInnerPaint;
     private Paint mCircleOuterInnerPaintMoving;
     private int mCircleOuterInnerColor;
@@ -139,7 +139,7 @@ public class RemoteControlView extends View {
     private float mCircleOuterInnerRadiusMoving;
 
 
-    //最内的圆的参数
+    //inner circle
     private Paint mCircleInnerPaint;
     private Paint mCircleInnerPaintMoving;
     private int mCircleInnerColor;
@@ -152,7 +152,7 @@ public class RemoteControlView extends View {
     private float mCircleInnerRadiusMoving;
 
 
-    //紧挨着最内的圆的外面圆环的参数
+    //InnerOuterCircle
     private Paint mCircleInnerOuterPaint;
     private Paint mCircleInnerOuterPaintMoving;
     private int mCircleInnerOuterColor;
@@ -165,7 +165,7 @@ public class RemoteControlView extends View {
     private float mCircleInnerOuterRadiusMoving;
 
 
-    //随手势滚动的圆的参数参数
+    //Controller circle
     private Paint mCircleControlPaint;
     private Paint mCircleControlPaintMoving;
     private int mCircleControlColor;
@@ -178,7 +178,7 @@ public class RemoteControlView extends View {
     private float mCircleControlRadiusMoving;
 
 
-    //随手势滚动的圆内部圆的参数
+    //inner Controller circle
     private Paint mCircleControlInnerPaint;
     private Paint mCircleControlInnerPaintMoving;
     private int mCircleControlInnerColor;
@@ -608,7 +608,7 @@ public class RemoteControlView extends View {
         float gravityX, gravityY;
         double theta;
         float x1, y1;
-        if (x > mCircleX && y < mCircleY) {//第一象限
+        if (x > mCircleX && y < mCircleY) {//the first quadrant
             theta = Math.atan((mCircleY - y) / (x - mCircleX));
             x1 = (float) (mCircleX + (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.cos(theta));
             y1 = (float) (mCircleY - (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.sin(theta));
@@ -632,7 +632,7 @@ public class RemoteControlView extends View {
             mTriangleTopY = (float) (gravityY - mDirectionTriangleEdgeMoving * Math.cos(Math.PI / 6) * Math.sin(theta));
 
 
-        } else if (x > mCircleX && y > mCircleY) { //第二象限
+        } else if (x > mCircleX && y > mCircleY) { //the second quadrant
             theta = Math.atan((y - mCircleY) / (x - mCircleX));
             x1 = (float) (mCircleX + (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.cos(theta));
             y1 = (float) (mCircleY + (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.sin(theta));
@@ -658,7 +658,7 @@ public class RemoteControlView extends View {
             mTriangleTopX = (float) (gravityX + mDirectionTriangleEdgeMoving * Math.cos(Math.PI / 6) * Math.cos(theta));
             mTriangleTopY = (float) (gravityY + mDirectionTriangleEdgeMoving * Math.cos(Math.PI / 6) * Math.sin(theta));
 
-        } else if (x < mCircleX && y > mCircleY) {   //第三象限
+        } else if (x < mCircleX && y > mCircleY) {  //the third quadrant
             theta = Math.atan((y - mCircleY) / (mCircleX - x));
             x1 = (float) (mCircleX - (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.cos(theta));
             y1 = (float) (mCircleY + (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.sin(theta));
@@ -683,7 +683,7 @@ public class RemoteControlView extends View {
             mTriangleTopY = (float) (gravityY + mDirectionTriangleEdgeMoving * Math.cos(Math.PI / 6) * Math.sin(theta));
 
 
-        } else if (x < mCircleX && y < mCircleY) {//第四象限
+        } else if (x < mCircleX && y < mCircleY) { //the fourth quadrant
             theta = Math.atan((mCircleY - y) / (mCircleX - x));
             x1 = (float) (mCircleX - (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.cos(theta));
             y1 = (float) (mCircleY - (mCircleOuterInnerRadius - mCircleInnerOuterRadius) * Math.sin(theta));

@@ -364,7 +364,7 @@ public class RemoteControlBallView extends View {
         float gravityX, gravityY;
         double theta;
         float x1, y1;
-        if (x > mCircleX && y < mCircleY) {//第一象限
+        if (x > mCircleX && y < mCircleY) {//the first quadrant
             theta = Math.atan((mCircleY - y) / (x - mCircleX));
             x1 = (float) (mCircleX + (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.cos(theta));
             y1 = (float) (mCircleY - (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.sin(theta));
@@ -388,7 +388,7 @@ public class RemoteControlBallView extends View {
             mTriangleTopY = (float) (gravityY - mTriangleSide * Math.cos(Math.PI / 6) * Math.sin(theta));
 
 
-        } else if (x > mCircleX && y > mCircleY) { //第二象限
+        } else if (x > mCircleX && y > mCircleY) { //the second quadrant
             theta = Math.atan((y - mCircleY) / (x - mCircleX));
             x1 = (float) (mCircleX + (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.cos(theta));
             y1 = (float) (mCircleY + (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.sin(theta));
@@ -414,7 +414,7 @@ public class RemoteControlBallView extends View {
             mTriangleTopX = (float) (gravityX + mTriangleSide * Math.cos(Math.PI / 6) * Math.cos(theta));
             mTriangleTopY = (float) (gravityY + mTriangleSide * Math.cos(Math.PI / 6) * Math.sin(theta));
 
-        } else if (x < mCircleX && y > mCircleY) {   //第三象限
+        } else if (x < mCircleX && y > mCircleY) {  //the third quadrant
             theta = Math.atan((y - mCircleY) / (mCircleX - x));
             x1 = (float) (mCircleX - (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.cos(theta));
             y1 = (float) (mCircleY + (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.sin(theta));
@@ -439,7 +439,7 @@ public class RemoteControlBallView extends View {
             mTriangleTopY = (float) (gravityY + mTriangleSide * Math.cos(Math.PI / 6) * Math.sin(theta));
 
 
-        } else if (x < mCircleX && y < mCircleY) {//第四象限
+        } else if (x < mCircleX && y < mCircleY) {//the fourth quadrant
             theta = Math.atan((mCircleY - y) / (mCircleX - x));
             x1 = (float) (mCircleX - (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.cos(theta));
             y1 = (float) (mCircleY - (mRadiusMiddleCircle - mRadiusInnerCircle) * Math.sin(theta));

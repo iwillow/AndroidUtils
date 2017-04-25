@@ -157,7 +157,7 @@ public class BatteryView extends View {
     }
 
     private void drawBackgroundBitmap(Canvas canvas) {
-        int width = this.getWidth();    //获取宽度
+        int width = this.getWidth();
         int height = this.getHeight();
         int left = width / 2 - mBackgroundBitmap.getWidth() / 2;
         int top = height / 2 - mBackgroundBitmap.getHeight() / 2;

@@ -219,7 +219,11 @@ public class FileUtil {
     }
 
 
-    // 获取不带扩展名的文件名
+    /**
+     * get file name without extensive name
+     * @param filename
+     * @return
+     */
     public static String getFileNameNoEx(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
             int dot = filename.lastIndexOf('.');
@@ -233,8 +237,12 @@ public class FileUtil {
 
 
 
-    // 以下是关键，原本uri返回的是file:///...来着的，android4.4返回的是content:///...
-
+    /**
+     *z get file uri with the format file:///... while android 4.4 is content:///...
+     * @param context
+     * @param uri
+     * @return
+     */
     public static String getPath(final Context context, final Uri uri) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {

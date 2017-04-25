@@ -180,15 +180,16 @@ public class ColorScaleView extends View {
         double theta = 0;
         if (Math.abs(x - mCenterX) < 0.0001) {
             if (y < mCenterY) {
-                theta = 0f;//Y轴上半轴
+                theta = 0f;//negative Y axis
+
             } else {
-                theta = Math.PI;//Y轴下半轴
+                theta = Math.PI;//positive Y axis
             }
         } else if (Math.abs(y - mCenterY) < 0.0001) {
             if (x < mCenterX) {
-                theta = Math.PI * 1.5;//X轴左半轴
+                theta = Math.PI * 1.5;//negative X axis
             } else {
-                theta = Math.PI * 0.5;//X轴右半轴
+                theta = Math.PI * 0.5;//positive X axis
             }
         } else {
             float deltaX;
