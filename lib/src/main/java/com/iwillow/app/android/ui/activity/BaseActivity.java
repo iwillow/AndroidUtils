@@ -31,9 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         initView(savedInstanceState);
     }
 
-    /**
-     * @return @NonNull
-     */
+
     protected abstract int getLayoutResID();
 
     protected abstract void initView(Bundle savedInstanceState);
