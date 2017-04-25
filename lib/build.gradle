@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.4.0'
+    }
+}
+
 
 android {
     compileSdkVersion 25
@@ -19,6 +30,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+publish {
+    userOrg = 'iwillowtech'
+    groupId = 'com.iwillow.app.android'
+    artifactId = 'android-utils'
+    publishVersion = '0.0.1'
+    desc = 'This is my personal android code note'
+    website = 'https://github.com/iwillow/AndroidUtils'
 }
 
 dependencies {
