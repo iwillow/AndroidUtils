@@ -1,2 +1,2 @@
-# AndroidSamples
-android code notes
+# AndroidUtils
+my personal code notes
