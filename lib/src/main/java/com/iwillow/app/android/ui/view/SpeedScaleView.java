@@ -207,7 +207,7 @@ public class SpeedScaleView extends View {
         int x = Math.round(event.getX());
         float scale;
         float progress = 0f;
-        // 下面是最小值
+        // MIN
         if (x > width - right) {
             scale = 1.0f;
         } else if (x < left) {
