@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
     tools:context="com.iwillow.app.samples.ui.MainActivity">
 
-    <com.iwillow.app.android.ui.view.StepView
-        android:id="@+id/stepView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.iwillow.app.android.ui.view.HorizontalStepView
+                    android:id="@+id/horizontalStepView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp" />
+            </HorizontalScrollView>
+
+
+        </HorizontalScrollView>
+
+
+        <com.iwillow.app.android.ui.view.VerticalStepView
+            android:id="@+id/staticLayoutView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

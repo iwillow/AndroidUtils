@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="step_names">
-        <item>Mobile</item>
-        <item>Deposit</item>
-        <item>Verification</item>
-        <item>Start Riding</item>
+        <item>Step1</item>
+        <item>Step2</item>
+        <item>Step3</item>
+        <item>Step4</item>
+        <item>Step5</item>
+        <item>Step6</item>
+        <item>Step7</item>
+        <item>Step8</item>
+        <item>Step9</item>
+        <item>Step10</item>
+    </array>
+    <array name="step_names_2">
+        <item>Step1</item>
+        <item>Step2Step2Step2Step2Step2Step2\nStep2Step2Step2Step2Step2Step2Step2</item>
+        <item>Step3</item>
+        <item>Step4</item>
+        <item>Step5</item>
+        <item>Step6</item>
+        <item>Step7</item>
+        <item>Step8</item>
+        <item>Step9</item>
+        <item>Step10</item>
+    </array>
+    <array name="step_names_1">
+        <item>Step1</item>
+        <item>Step2</item>
+        <item>Step3</item>
     </array>
 
 </resources>

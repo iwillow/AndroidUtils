@@ -43,21 +43,6 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-  <component name="SbtLocalSettings">
-    <option name="modificationStamps">
-      <map>
-        <entry key="E:/my-example-project" value="1484722919406" />
-        <entry key="E:/scala-android" value="1484731823160" />
-        <entry key="F:/Android/App2" value="1486459236195" />
-      </map>
-    </option>
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
-  </component>
-  <component name="ScalaSbtSettings">
-    <option name="customLauncherPath" value="E:\software\sbt\bin\sbt-launch.jar" />
-  </component>
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
