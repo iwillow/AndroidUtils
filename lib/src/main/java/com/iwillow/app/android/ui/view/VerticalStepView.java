@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.text.Layout;
@@ -32,19 +34,23 @@ import java.util.List;
 
 public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = VerticalStepView.class.getSimpleName();
+    private static final float MAX_RADIUS_FRACTION = 1.6f;
+    private static final float MIN_RADIUS_FRACTION = 1.3f;
     private TextPaint mTextPaint;
+    private int mTextColor;
+    private float mTextSize;
     private Paint mPaint;
     private List<StaticLayout> mStepLayouts = new ArrayList<>();
-    private float mStepRadius;
+    private float mAnimationRadius;
     private float mMaxStepRadius;
     private float mMinStepRadius;
     private float mRadius;
     private float mHorizontalGap;
     private float mVerticalGap;
     private int mFinishedStep = 0;
-    private int mUnfinishedLineColor;
-    private int mFinishedLineColor;
-    private int mAnimatorColor;
+    private int mUnfinishedColor;
+    private int mFinishedColor;
+    private int mAnimationColor;
     private float mLineWidth;
     private Bitmap mBitmap;
     private Paint mBitmapPaint;
@@ -53,6 +59,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
     private float mSpringY;
     private boolean mOnGlobalLayoutCalled = false;
     private StepItemsListener mStepItemsListener;
+
 
     public VerticalStepView(Context context) {
         this(context, null);
@@ -64,45 +71,62 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
 
     public VerticalStepView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public VerticalStepView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        init(attrs, defStyleAttr);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs, int defStyleAttr) {
 
-        // float width = StaticLayout.getDesiredWidth(charSequence, textPaint);
-        // staticLayout = new StaticLayout(charSequence, textPaint, 300, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
-        mRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
-        mMaxStepRadius = mRadius * 1.6f;
-        mMinStepRadius = mRadius * 1.3f;
-        mHorizontalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
-        mVerticalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
-        mLineWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
+        final TypedArray typedArray = getContext().obtainStyledAttributes(
+                attrs, R.styleable.VerticalStepView, defStyleAttr, 0);
 
-        mUnfinishedLineColor = getResources().getColor(R.color.colorGray);
-        mFinishedLineColor = getResources().getColor(R.color.colorOk);
-        mAnimatorColor = getResources().getColor(R.color.colorOk1);
+        float defaultRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        mRadius = typedArray.getDimension(R.styleable.VerticalStepView_circle_radius, defaultRadius);
+        mMaxStepRadius = mRadius * MAX_RADIUS_FRACTION;
+        mMinStepRadius = mRadius * MIN_RADIUS_FRACTION;
 
+        float defaultHorizontalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        mHorizontalGap = typedArray.getDimension(R.styleable.VerticalStepView_horizontal_gap, defaultHorizontalGap);
+
+        float defaultVerticalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        mVerticalGap = typedArray.getDimension(R.styleable.VerticalStepView_vertical_gap, defaultVerticalGap);
+
+        float defaultLineWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
+        mLineWidth = typedArray.getDimension(R.styleable.VerticalStepView_line_width, defaultLineWidth);
+
+        int defaultUnfinishedColor = getResources().getColor(R.color.default_unfinished_color);
+        mUnfinishedColor = typedArray.getColor(R.styleable.VerticalStepView_unfinished_color, defaultUnfinishedColor);
+
+        int defaultFinishedColor = getResources().getColor(R.color.default_finished_color);
+        mFinishedColor = typedArray.getColor(R.styleable.VerticalStepView_finished_color, defaultFinishedColor);
+
+        int defaultAnimationColor = getResources().getColor(R.color.default_animation_color);
+        mAnimationColor = typedArray.getColor(R.styleable.VerticalStepView_animation_color, defaultAnimationColor);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(getResources().getColor(R.color.colorGray));
+        mPaint.setColor(mUnfinishedColor);
         mPaint.setAntiAlias(true);
 
         mTextPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
-        mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics()));
-        mTextPaint.setColor(Color.RED);
+        float defaultTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics());
+        mTextSize = typedArray.getDimension(R.styleable.VerticalStepView_step_text_size, defaultTextSize);
+        mTextPaint.setTextSize(mTextSize);
+        mTextColor = typedArray.getColor(R.styleable.VerticalStepView_step_text_color, Color.RED);
+        mTextPaint.setColor(mTextColor);
 
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_finished);
         mBitmapPaint = new Paint();
         mBitmapPaint.setAntiAlias(true);
         mBitmapPaint.setDither(true);
         mBitmapPaint.setStyle(Paint.Style.STROKE);
+
+        typedArray.recycle();
 
         getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
@@ -151,7 +175,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         mPaint.setStrokeWidth(mLineWidth);
         int startX = (getPaddingLeft() + (int) mRadius);
         int startY = getPaddingTop() + (int) mRadius;
-        mPaint.setColor(mUnfinishedLineColor);
+        mPaint.setColor(mUnfinishedColor);
         int height = startY;
         int finishY = startY;
         for (int i = 1; i < mStepLayouts.size(); i++) {
@@ -160,9 +184,9 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
                 finishY += mStepLayouts.get(i - 1).getHeight() + mVerticalGap;
             }
         }
-        mPaint.setColor(mFinishedLineColor);
+        mPaint.setColor(mFinishedColor);
         canvas.drawLine(startX, startY, startX, finishY, mPaint);
-        mPaint.setColor(mUnfinishedLineColor);
+        mPaint.setColor(mUnfinishedColor);
         canvas.drawLine(startX, finishY, startX, height, mPaint);
     }
 
@@ -176,7 +200,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         int x = (int) (paddingLeft + 2 * mRadius + mHorizontalGap);
         int height = paddingTop + (int) mRadius;
         if (mFinishedStep == 0) {
-            mPaint.setColor(mFinishedLineColor);
+            mPaint.setColor(mFinishedColor);
             mSpringY = height + mRadius;
             canvas.drawCircle(paddingLeft + mRadius, mSpringY, mRadius, mPaint);
         } else {
@@ -192,11 +216,11 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
             if (i < mFinishedStep) {
                 canvas.drawBitmap(mBitmap, startX - mBitmap.getWidth() / 2, height - mRadius, mBitmapPaint);
             } else if (i == mFinishedStep) {
-                mPaint.setColor(mFinishedLineColor);
+                mPaint.setColor(mFinishedColor);
                 mSpringY = height + mRadius;
                 canvas.drawCircle(paddingLeft + mRadius, mSpringY, mRadius, mPaint);
             } else {
-                mPaint.setColor(mUnfinishedLineColor);
+                mPaint.setColor(mUnfinishedColor);
                 canvas.drawCircle(paddingLeft + mRadius, height + mRadius, mRadius, mPaint);
             }
             canvas.save();
@@ -209,8 +233,8 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         if (!mRunning || mFinishedStep == mStepLayouts.size()) {
             return;
         }
-        mPaint.setColor(mAnimatorColor);
-        canvas.drawCircle(paddingLeft + mRadius, mSpringY, mStepRadius, mPaint);
+        mPaint.setColor(mAnimationColor);
+        canvas.drawCircle(paddingLeft + mRadius, mSpringY, mAnimationRadius, mPaint);
     }
 
 
@@ -237,6 +261,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
             throw new IllegalStateException("Please call this method in Activity's onResume method or implements VerticalStepView.StepItemsListener's onStartLoadItems method !  ");
         } else if (items != null && items.size() > 1) {
             mStepLayouts.clear();
+            mTextPaint.setColor(mTextColor);
             for (String item : items) {
                 StaticLayout layout = new StaticLayout(item, mTextPaint, maxTextWidth, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
                 mStepLayouts.add(layout);
@@ -244,6 +269,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
             requestLayout();
         }
     }
+
 
     private void resetSpringAnim() {
         Log.d(TAG, "resetSpringAnim");
@@ -258,7 +284,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         mStepAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mStepRadius = (float) animation.getAnimatedValue();
+                mAnimationRadius = (float) animation.getAnimatedValue();
                 invalidate();
             }
         });
@@ -301,6 +327,76 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
             }
         }
     }
+
+
+    public void setHorizontalGap(float horizontalGap) {
+        if (mHorizontalGap != horizontalGap) {
+            mHorizontalGap = horizontalGap;
+            invalidate();
+        }
+    }
+
+    public void setVerticalGap(float verticalGap) {
+        if (mVerticalGap != verticalGap) {
+            mVerticalGap = verticalGap;
+            requestLayout();
+        }
+    }
+
+    public void setTextColor(@ColorInt int textColor) {
+        if (mTextColor != textColor) {
+            mTextColor = textColor;
+            mTextPaint.setColor(textColor);
+            invalidate();
+        }
+    }
+
+    public void setTextSize(float textSize) {
+        if (mTextSize != textSize) {
+            mTextSize = textSize;
+            mTextPaint.setTextSize(textSize);
+            invalidate();
+        }
+    }
+
+    public void setLineWidth(int lineWidth) {
+        if (mLineWidth != lineWidth) {
+            mLineWidth = lineWidth;
+            invalidate();
+        }
+    }
+
+    public void setAnimationColor(@ColorInt int animationColor) {
+        if (mAnimationColor != animationColor) {
+            mAnimationColor = animationColor;
+            invalidate();
+        }
+    }
+
+    public void setFinishedColor(@ColorInt int finishedColor) {
+        if (mFinishedColor != finishedColor) {
+            mFinishedColor = finishedColor;
+            invalidate();
+        }
+    }
+
+    public void setUnFinishedColor(@ColorInt int UnfinishedColor) {
+        if (mUnfinishedColor != UnfinishedColor) {
+            mUnfinishedColor = UnfinishedColor;
+            invalidate();
+        }
+    }
+
+    public void setRadius(float radius) {
+        if (mRadius != radius) {
+            mRadius = radius;
+            mMaxStepRadius = mRadius * MAX_RADIUS_FRACTION;
+            mMinStepRadius = mRadius * MIN_RADIUS_FRACTION;
+            requestLayout();
+            resetSpringAnim();
+        }
+    }
+
 
     public void setStepItemsListener(StepItemsListener stepItemsListener) {
         this.mStepItemsListener = stepItemsListener;

@@ -141,4 +141,18 @@
         <attr name="gravityInstrumentView_innerOuterCircleColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="VerticalStepView">
+
+        <attr name="unfinished_color" format="color" />
+        <attr name="finished_color" format="color" />
+        <attr name="animation_color" format="color" />
+        <attr name="step_text_color" format="color" />
+        <attr name="step_text_size" format="dimension" />
+        <attr name="circle_radius" format="dimension" />
+        <attr name="horizontal_gap" format="dimension" />
+        <attr name="vertical_gap" format="dimension" />
+        <attr name="line_width" format="dimension" />
+    </declare-styleable>
+
+
 </resources>
