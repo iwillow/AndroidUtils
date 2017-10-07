@@ -11,6 +11,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.iwillow.app.android.R;
+import com.iwillow.app.android.util.LogExt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,23 @@ import java.util.List;
  */
 
 public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalLayoutListener {
+    private static final String KEY_SUPER_STATE = "super_state";
+    private static final String KEY_TEXT_COLOR = "text_color";
+    private static final String KEY_TEXT_SIZE = "text_size";
+    private static final String KEY_RADIUS = "radius";
+    private static final String KEY_MAX_STEP_RADIUS = "max_step_radius";
+    private static final String KEY_MIN_STEP_RADIUS = "min_step_radius";
+    private static final String KEY_HORIZONTAL_GAP = "horizontal_gap";
+    private static final String KEY_VERTICAL_GAP = "vertical_gap";
+    private static final String KEY_FINISHED_STEP = "finished_step";
+    private static final String KEY_FINISHED_COLOR = "finished_color";
+    private static final String KEY_UNFINISHED_COLOR = "unfinished_color";
+    private static final String KEY_ANIMATION_COLOR = "animation_color";
+    private static final String KEY_LINE_WIDTH = "line_width";
+    private static final String KEY_SPRING_Y = "spring_y";
+    private static final String KEY_STEPS = "steps";
+
+
     private static final String TAG = VerticalStepView.class.getSimpleName();
     private static final float MAX_RADIUS_FRACTION = 1.6f;
     private static final float MIN_RADIUS_FRACTION = 1.3f;
@@ -108,29 +128,38 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         int defaultAnimationColor = getResources().getColor(R.color.default_animation_color);
         mAnimationColor = typedArray.getColor(R.styleable.VerticalStepView_animation_color, defaultAnimationColor);
 
+
+        float defaultTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics());
+        mTextSize = typedArray.getDimension(R.styleable.VerticalStepView_step_text_size, defaultTextSize);
+        mTextColor = typedArray.getColor(R.styleable.VerticalStepView_step_text_color, Color.RED);
+
+        typedArray.recycle();
+
+        initPaints();
+    }
+
+
+    private void initPaints() {
+
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(mUnfinishedColor);
         mPaint.setAntiAlias(true);
 
+
         mTextPaint = new TextPaint();
         mTextPaint.setAntiAlias(true);
-        float defaultTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics());
-        mTextSize = typedArray.getDimension(R.styleable.VerticalStepView_step_text_size, defaultTextSize);
         mTextPaint.setTextSize(mTextSize);
-        mTextColor = typedArray.getColor(R.styleable.VerticalStepView_step_text_color, Color.RED);
         mTextPaint.setColor(mTextColor);
 
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_finished);
         mBitmapPaint = new Paint();
         mBitmapPaint.setAntiAlias(true);
         mBitmapPaint.setDither(true);
         mBitmapPaint.setStyle(Paint.Style.STROKE);
 
-        typedArray.recycle();
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_finished);
 
         getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -146,6 +175,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         }
         setMeasuredDimension(width, height);
     }
+
 
     @Override
     protected int getSuggestedMinimumWidth() {
@@ -317,6 +347,7 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
 
     @Override
     public void onGlobalLayout() {
+        LogExt.d(TAG, "onGlobalLayout");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
@@ -406,4 +437,55 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         void onStartLoadItems(VerticalStepView stepView);
     }
 
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        final Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
+        bundle.putInt(KEY_TEXT_COLOR, mTextColor);
+        bundle.putFloat(KEY_TEXT_SIZE, mTextSize);
+        bundle.putFloat(KEY_RADIUS, mRadius);
+        bundle.putFloat(KEY_MAX_STEP_RADIUS, mMaxStepRadius);
+        bundle.putFloat(KEY_MIN_STEP_RADIUS, mMinStepRadius);
+        bundle.putFloat(KEY_HORIZONTAL_GAP, mHorizontalGap);
+        bundle.putFloat(KEY_VERTICAL_GAP, mVerticalGap);
+        bundle.putInt(KEY_FINISHED_STEP, mFinishedStep);
+        bundle.putInt(KEY_FINISHED_COLOR, mFinishedColor);
+        bundle.putInt(KEY_UNFINISHED_COLOR, mUnfinishedColor);
+        bundle.putInt(KEY_ANIMATION_COLOR, mAnimationColor);
+        bundle.putFloat(KEY_LINE_WIDTH, mLineWidth);
+        bundle.putFloat(KEY_SPRING_Y, mSpringY);
+   /*     CharSequence[] steps = new CharSequence[mStepLayouts.size()];
+        for (int i = 0; i < steps.length; i++) {
+            steps[i] = mStepLayouts.get(i).getText();
+        }
+        bundle.putCharSequenceArray(KEY_STEPS, steps);*/
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
+            final Bundle bundle = (Bundle) state;
+            mTextColor = bundle.getInt(KEY_TEXT_COLOR);
+            mTextSize = bundle.getFloat(KEY_TEXT_SIZE);
+            mRadius = bundle.getFloat(KEY_RADIUS);
+            mMaxStepRadius = bundle.getFloat(KEY_MAX_STEP_RADIUS);
+            mMinStepRadius = bundle.getFloat(KEY_MIN_STEP_RADIUS);
+            mHorizontalGap = bundle.getFloat(KEY_HORIZONTAL_GAP);
+            mVerticalGap = bundle.getFloat(KEY_VERTICAL_GAP);
+            mFinishedStep = bundle.getInt(KEY_FINISHED_STEP);
+            mFinishedColor = bundle.getInt(KEY_FINISHED_COLOR);
+            mUnfinishedColor = bundle.getInt(KEY_UNFINISHED_COLOR);
+            mAnimationColor = bundle.getInt(KEY_ANIMATION_COLOR);
+            mLineWidth = bundle.getInt(KEY_LINE_WIDTH);
+            mSpringY = bundle.getFloat(KEY_SPRING_Y);
+            initPaints();
+            requestLayout();
+            resetSpringAnim();
+            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_STATE));
+            return;
+        }
+        super.onRestoreInstanceState(state);
+    }
 }

@@ -11,22 +11,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <!--
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.iwillow.app.android.ui.view.HorizontalStepView
-                    android:id="@+id/horizontalStepView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp" />
-            </HorizontalScrollView>
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.iwillow.app.android.ui.view.HorizontalStepView
+                            android:id="@+id/horizontalStepView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="80dp" />
+                    </HorizontalScrollView>
 
 
-        </HorizontalScrollView>
+                </HorizontalScrollView>-->
 
 
         <com.iwillow.app.android.ui.view.VerticalStepView
