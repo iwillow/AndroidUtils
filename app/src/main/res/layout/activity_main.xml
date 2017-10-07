@@ -12,7 +12,6 @@
         android:orientation="vertical">
 
 
-        <!--
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -28,7 +27,7 @@
                     </HorizontalScrollView>
 
 
-                </HorizontalScrollView>-->
+                </HorizontalScrollView>
 
 
         <com.iwillow.app.android.ui.view.VerticalStepView
