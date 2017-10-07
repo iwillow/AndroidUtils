@@ -19,17 +19,18 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewTreeObserver;
+
+import com.iwillow.app.android.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.iwillow.app.android.util.DimenUtil.dp2px;
 
 /**
  * Created by iwillow on 2017/10/5.
  */
 
-public class VerticalStepView extends View {
+public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = VerticalStepView.class.getSimpleName();
     private TextPaint mTextPaint;
     private Paint mPaint;
@@ -44,13 +45,14 @@ public class VerticalStepView extends View {
     private int mUnfinishedLineColor;
     private int mFinishedLineColor;
     private int mAnimatorColor;
-    private float mMaxPadding;
     private float mLineWidth;
     private Bitmap mBitmap;
     private Paint mBitmapPaint;
     private ValueAnimator mStepAnimator;
     private boolean mRunning;
     private float mSpringY;
+    private boolean mOnGlobalLayoutCalled = false;
+    private StepItemsListener mStepItemsListener;
 
     public VerticalStepView(Context context) {
         this(context, null);
@@ -79,16 +81,16 @@ public class VerticalStepView extends View {
         mMaxStepRadius = mRadius * 1.6f;
         mMinStepRadius = mRadius * 1.3f;
         mHorizontalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
-        mVerticalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
-        mLineWidth = dp2px(getResources(), 1f);
+        mVerticalGap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        mLineWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
 
-        mUnfinishedLineColor = getResources().getColor(com.iwillow.app.android.R.color.colorGray);
-        mFinishedLineColor = getResources().getColor(com.iwillow.app.android.R.color.colorOk);
-        mAnimatorColor = getResources().getColor(com.iwillow.app.android.R.color.colorOk1);
+        mUnfinishedLineColor = getResources().getColor(R.color.colorGray);
+        mFinishedLineColor = getResources().getColor(R.color.colorOk);
+        mAnimatorColor = getResources().getColor(R.color.colorOk1);
 
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(getResources().getColor(com.iwillow.app.android.R.color.colorGray));
+        mPaint.setColor(getResources().getColor(R.color.colorGray));
         mPaint.setAntiAlias(true);
 
         mTextPaint = new TextPaint();
@@ -96,68 +98,43 @@ public class VerticalStepView extends View {
         mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics()));
         mTextPaint.setColor(Color.RED);
 
-        mBitmap = BitmapFactory.decodeResource(getResources(), com.iwillow.app.android.R.drawable.ic_finished);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_finished);
         mBitmapPaint = new Paint();
         mBitmapPaint.setAntiAlias(true);
         mBitmapPaint.setDither(true);
         mBitmapPaint.setStyle(Paint.Style.STROKE);
+
+        getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
-        int width = widthSize;
+        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         int height;
-        /*if (widthMode == MeasureSpec.EXACTLY) {
-            // Parent has told us how big to be. So be it.
-            width = widthSize;
-        } else {
-            width = Math.max(widthSize, getSuggestedMinimumWidth());
-        }*/
-
-        if (heightMode == MeasureSpec.EXACTLY) {
-            // Parent has told us how big to be. So be it.
-            height = heightSize;
-        } else {
-            if (mStepLayouts.size() > 1) {
-                height = getPaddingTop() + getPaddingBottom() + (int) (2 * mRadius);
-                for (StaticLayout layout : mStepLayouts) {
-                    height += layout.getHeight() + mVerticalGap;
-                }
-            } else {
-                height = Math.max(heightSize, getSuggestedMinimumHeight());
+        if (mStepLayouts.size() > 1) {
+            height = getPaddingTop() + getPaddingBottom() + (int) (2 * mRadius);
+            for (StaticLayout layout : mStepLayouts) {
+                height += layout.getHeight() + mVerticalGap;
             }
+        } else {
+            height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
         }
         setMeasuredDimension(width, height);
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        int p = getPaddingLeft();
-        p = Math.max(p, getPaddingRight());
-        p = Math.max(p, getPaddingBottom());
-        mMaxPadding = dp2px(getResources(), 30) + Math.max(p, getPaddingTop());
-    }
-
-    @Override
     protected int getSuggestedMinimumWidth() {
-        int sw = super.getSuggestedMinimumWidth();
-        int defaultW = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
-        return Math.max(sw, defaultW);
+        int suggestedWidth = super.getSuggestedMinimumWidth();
+        int defaultWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
+        return Math.max(suggestedWidth, defaultWidth);
     }
 
     @Override
     protected int getSuggestedMinimumHeight() {
-        int sh = super.getSuggestedMinimumWidth();
-        int defaultH = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
-        return Math.max(sh, defaultH);
+        int suggestedHeight = super.getSuggestedMinimumHeight();
+        int defaultHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
+        return Math.max(suggestedHeight, defaultHeight);
     }
 
 
@@ -254,8 +231,11 @@ public class VerticalStepView extends View {
         }
     }
 
-    public void setItems(List<String> items, int maxTextWidth) {
-        if (items != null && items.size() > 1) {
+    public void setItems(final List<String> items) {
+        int maxTextWidth = (int) (getWidth() - getPaddingLeft() - getPaddingRight() - 2 * mRadius - mHorizontalGap);
+        if (maxTextWidth < 0) {
+            throw new IllegalStateException("Please call this method in Activity's onResume method or implements VerticalStepView.StepItemsListener's onStartLoadItems method !  ");
+        } else if (items != null && items.size() > 1) {
             mStepLayouts.clear();
             for (String item : items) {
                 StaticLayout layout = new StaticLayout(item, mTextPaint, maxTextWidth, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
@@ -308,4 +288,26 @@ public class VerticalStepView extends View {
         super.onDetachedFromWindow();
         stopSpringAnim();
     }
+
+    @Override
+    public void onGlobalLayout() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        }
+        if (!mOnGlobalLayoutCalled) {
+            mOnGlobalLayoutCalled = true;
+            if (mStepItemsListener != null) {
+                mStepItemsListener.onStartLoadItems(this);
+            }
+        }
+    }
+
+    public void setStepItemsListener(StepItemsListener stepItemsListener) {
+        this.mStepItemsListener = stepItemsListener;
+    }
+
+    public interface StepItemsListener {
+        void onStartLoadItems(VerticalStepView stepView);
+    }
+
 }
