@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    tools:context="com.iwillow.app.samples.ui.MovieGalleryActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_movie_container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:clipChildren="false">
+
+        <ImageView
+            android:id="@+id/iv_movie_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/img_movie_blur"
+            android:scaleType="centerCrop" />
+
+        <com.iwillow.app.android.ui.view.ClipViewPager
+            android:id="@+id/vp_movie_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:clipChildren="false">
+
+        </com.iwillow.app.android.ui.view.ClipViewPager>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>

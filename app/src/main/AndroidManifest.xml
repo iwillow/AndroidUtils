@@ -11,13 +11,22 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:configChanges="orientation|screenSize">
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.StepActivity"
+            android:label="@string/name_step_activity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.MovieGalleryActivity"
+            android:label="@string/name_movie_gallery_activity"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>
