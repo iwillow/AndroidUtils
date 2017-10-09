@@ -1,40 +1,38 @@
 package com.iwillow.app.samples.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
-import com.iwillow.app.android.ui.view.HorizontalStepView;
-import com.iwillow.app.android.ui.view.VerticalStepView;
 import com.iwillow.app.samples.R;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HorizontalStepView horizontalStepView = (HorizontalStepView) findViewById(R.id.horizontalStepView);
-        List<String> data = Arrays.asList(getResources().getStringArray(R.array.step_names));
-        horizontalStepView.setItems(data);
-        horizontalStepView.setCurrentStep(0);
-        VerticalStepView verticalStepView = (VerticalStepView) findViewById(R.id.verticalStepView);
-        verticalStepView.setStepItemsListener(new VerticalStepView.StepItemsListener() {
-            @Override
-            public void onStartLoadItems(VerticalStepView stepView) {
-                List<String> data = Arrays.asList(getResources().getStringArray(R.array.i_have_a_dream));
-                stepView.setItems(data);
-                stepView.finishStep(5);
-            }
-        });
-
+        findViewById(R.id.btn_step_view).setOnClickListener(this);
+        findViewById(R.id.btn_movie_gallery).setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.btn_step_view:
+                intent = new Intent(v.getContext(), StepActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_movie_gallery:
+                intent = new Intent(v.getContext(), MovieGalleryActivity.class);
+                startActivity(intent);
+                break;
+        }
 
+    }
 }
