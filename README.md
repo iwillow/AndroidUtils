@@ -45,7 +45,7 @@ or refer [GravityInstrumentView](https://github.com/iwillow/AndroidUtils/blob/ma
 
 ![Cooler Remote Control UI](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/cotrol_b.gif)
 
-In addition,[ScaleView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/ScaleView.java) can be useful in some case.
+In addition,[SpeedScaleView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/SpeedScaleView.java) might be useful in some case.
 
 ## License
 
