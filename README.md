@@ -2,14 +2,21 @@
 This is my personal code lab.
 
 ## StepView (including horizontal StepView and vertical StepView)
-
+Please see the usage from [StepActivity](https://github.com/iwillow/AndroidUtils/blob/master/app/src/main/java/com/iwillow/app/samples/ui/StepActivity.java),
+or reference [HorizontalStepView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/HorizontalStepView.java) and
+[VerticalStepView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/VerticalStepView.java) for details.
 ![StepView](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/step_view.gif)
 
 ## Circle Color Chooser
+Please see the usage from [ColorScaleActivity](https://github.com/iwillow/AndroidUtils/blob/master/app/src/main/java/com/iwillow/app/samples/ui/ColorScaleActivity.java),
+or reference [ColorScaleView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/ColorScaleView.java) for details.
 
 ![color chooser](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/color_chooser.gif)
 
-## Movie Gallery Chooser
+## Gallery Chooser
+Please see the usage from [MovieGalleryActivity](https://github.com/iwillow/AndroidUtils/blob/master/app/src/main/java/com/iwillow/app/samples/ui/MovieGalleryActivity.java),
+or reference [ClipViewPager](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/ClipViewPager.java) for details.
+
 
 ![Movie Gallery Chooser](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/movie_gallery.gif)
 
