@@ -2,10 +2,7 @@ package com.iwillow.app.samples.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.iwillow.app.samples.R;
@@ -18,6 +15,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_step_view).setOnClickListener(this);
         findViewById(R.id.btn_movie_gallery).setOnClickListener(this);
+        findViewById(R.id.btn_color_scale).setOnClickListener(this);
+        findViewById(R.id.btn_color_scale).setOnClickListener(this);
+        findViewById(R.id.btn_simple_remote_control).setOnClickListener(this);
+        findViewById(R.id.btn_cool_remote_control_a).setOnClickListener(this);
+        findViewById(R.id.btn_cool_remote_control_b).setOnClickListener(this);
     }
 
     @Override
@@ -30,6 +32,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_movie_gallery:
                 intent = new Intent(v.getContext(), MovieGalleryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_color_scale:
+                intent = new Intent(v.getContext(), ColorScaleActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_simple_remote_control:
+                intent = new Intent(v.getContext(), SimpleRemoteControlActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_cool_remote_control_a:
+                intent = new Intent(v.getContext(), CoolARemoteControlActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_cool_remote_control_b:
+                intent = new Intent(v.getContext(), CoolBRemoteControlActivity.class);
                 startActivity(intent);
                 break;
         }

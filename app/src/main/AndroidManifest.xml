@@ -3,6 +3,7 @@
     package="com.iwillow.app.samples">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,12 +22,30 @@
         <activity
             android:name=".ui.StepActivity"
             android:label="@string/name_step_activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MovieGalleryActivity"
             android:label="@string/name_movie_gallery_activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ColorScaleActivity"
+            android:label="@string/name_color_scale_activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SimpleRemoteControlActivity"
+            android:label="@string/name_simple_remote_control_activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CoolARemoteControlActivity"
+            android:label="@string/name_cool_remote_control_a_activity"
+            android:screenOrientation="portrait">
+        </activity>
 
+        <activity
+            android:name=".ui.CoolBRemoteControlActivity"
+            android:label="@string/name_cool_remote_control_b_activity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

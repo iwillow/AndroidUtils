@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <Button
             android:id="@+id/btn_step_view"
             android:layout_width="wrap_content"
@@ -21,10 +22,35 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btn_color_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_color_scale_activity"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btn_movie_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name_movie_gallery_activity" />
+
+        <Button
+            android:id="@+id/btn_simple_remote_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_simple_remote_control_activity" />
+
+        <Button
+            android:id="@+id/btn_cool_remote_control_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_cool_remote_control_a_activity" />
+
+        <Button
+            android:id="@+id/btn_cool_remote_control_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_cool_remote_control_b_activity" />
 
     </LinearLayout>
 

@@ -26,7 +26,7 @@ import static com.iwillow.app.android.util.DimenUtil.dp2px;
 import static com.iwillow.app.android.util.DimenUtil.sp2px;
 
 /**
- * Created by iwillow on 2017/10/3.
+ * Created by iwillow on 2017/9/26.
  */
 
 public class HorizontalStepView extends View {
@@ -189,7 +189,8 @@ public class HorizontalStepView extends View {
             canvas.drawLine(startX, -mDistance, endX, -mDistance, mPaint);
         } else {
             float segment = (getWidth() - 2f * mMaxPadding) / (mItems.size() - 1);
-            float finishX = startX + mCurrentStep * segment;
+            int step = mCurrentStep < mItems.size() ? mCurrentStep : mItems.size() - 1;
+            float finishX = startX + step * segment;
             mPaint.setColor(mFinishedLineColor);
             canvas.drawLine(startX, -mDistance, finishX, -mDistance, mPaint);
             mPaint.setColor(mUnfinishedLineColor);
@@ -255,8 +256,16 @@ public class HorizontalStepView extends View {
         canvas.restore();
     }
 
-    public void setCurrentStep(int step) {
-        if (step < 0 || step > mItems.size() - 1) {
+    public int getCurrentFinishedStep() {
+        return mCurrentStep;
+    }
+
+    public boolean isFinished() {
+        return mItems.size() == mCurrentStep;
+    }
+
+    public void finishStep(int step) {
+        if (step < 0 || step - 1 > mItems.size()) {
             throw new IllegalArgumentException("invalid step index:" + step);
         } else if (step != mCurrentStep) {
             mCurrentStep = step;

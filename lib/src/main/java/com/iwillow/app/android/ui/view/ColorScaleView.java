@@ -23,7 +23,7 @@ import static com.iwillow.app.android.util.DimenUtil.dp2px;
 
 
 /**
- * Created by ddx on 2017/3/29.
+ * Created by iwillow on 2017/3/29.
  */
 
 public class ColorScaleView extends View {

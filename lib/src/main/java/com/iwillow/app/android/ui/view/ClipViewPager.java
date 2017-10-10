@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 /**
- * Created by iwillow on 2017/10/9.
+ * Created by iwillow on 2017/9/25.
  */
 
 public class ClipViewPager extends ViewPager {

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by ddx on 2017/3/1.
+ * Created by iwillow on 2017/3/1.
  */
 
 public class FragmentWeakHandler<T extends Fragment & FragmentWeakHandler.MessageListener> extends Handler {

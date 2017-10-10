@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by  on 2017/4/17.
+ * Created by iwillow on 2017/4/17.
  */
 
 public interface HttpRequestInterface {
