@@ -24,7 +24,7 @@ This is my personal code lab.
 
 ![Cooler Remote Control UI](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/cotrol_b.gif)
 
-### License
+## License
 
 This project is released under the [Apache 2.0 license](LICENSE).
 
