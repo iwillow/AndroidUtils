@@ -267,6 +267,13 @@ public class VerticalStepView extends View implements ViewTreeObserver.OnGlobalL
         canvas.drawCircle(paddingLeft + mRadius, mSpringY, mAnimationRadius, mPaint);
     }
 
+    public int getCurrentFinishedStep() {
+        return mFinishedStep;
+    }
+
+    public boolean isFinished() {
+        return mStepLayouts.size() == mFinishedStep;
+    }
 
     public void finishStep(int step) {
         if (step < 0 || step - 1 > mStepLayouts.size()) {
