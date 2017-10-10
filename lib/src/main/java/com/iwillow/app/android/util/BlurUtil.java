@@ -26,7 +26,7 @@ public class BlurUtil {
 
     private static final String TAG = BlurUtil.class.getSimpleName();
     private static final float DEFAULT_SCALE = 1 / 8.0F;//default scale
-    private static BlurUtil sInstace;
+    private static BlurUtil sInstance;
     private Bitmap mBitmap;
     private int mRadius = 0;
     private float mScale = DEFAULT_SCALE;
@@ -44,14 +44,14 @@ public class BlurUtil {
 
 
     public static BlurUtil with(WeakReference<Context> contextRef) {
-        if (sInstace == null) {
+        if (sInstance == null) {
             synchronized (BlurUtil.class) {
-                if (sInstace == null) {
-                    sInstace = new BlurUtil(contextRef.get());
+                if (sInstance == null) {
+                    sInstance = new BlurUtil(contextRef.get());
                 }
             }
         }
-        return sInstace;
+        return sInstance;
     }
 
     /**

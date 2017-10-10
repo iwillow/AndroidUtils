@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.iwillow.app.samples.ui.CoolBRemoteControlActivity">
+
+    <com.iwillow.app.android.ui.view.BatteryView
+        android:id="@+id/batteryView"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="90dp" />
+
+    <com.iwillow.app.android.ui.view.SpeedView
+        android:id="@+id/speedView"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true" />
+
+    <com.iwillow.app.android.ui.view.GravityInstrumentView
+        android:id="@+id/gravityInstrumentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp" />
+
+    <com.iwillow.app.android.ui.view.SpeedScaleView
+        android:id="@+id/speedScaleView"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_toLeftOf="@id/speedScaleView"
+        android:text="速度："
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/tv_log_fraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/tv_log_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white" />
+
+    <com.iwillow.app.android.ui.view.BottomDecorView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+</RelativeLayout>
