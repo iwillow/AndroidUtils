@@ -5,9 +5,6 @@ This is my personal code lab.
 
 ![StepView](https://github.com/iwillow/AndroidUtils/blob/update-view/screenshots/step_view.gif)
 
-
-### Vertical StepView
-
 ## Circle Color Chooser
 
 ![color chooser](https://github.com/iwillow/AndroidUtils/blob/update-view/screenshots/color_chooser.gif)
