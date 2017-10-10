@@ -3,7 +3,8 @@ This is my personal code lab.
 
 ## download
 
-You can directly download the apk from [here](https://github.com/iwillow/AndroidUtils/blob/master/apk/demo_app.apk) or scan the following QR code . 
+You can directly download the apk from [here](https://github.com/iwillow/AndroidUtils/blob/master/apk/demo_app.apk) or scan the following QR code. 
+
 ![APK](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/download_qr.png)
 
 ## StepView (including horizontal StepView and vertical StepView)
