@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.iwillow.app.samples.ui.SimpleRemoteControlActivity">
+
+    <com.iwillow.app.android.ui.view.RemoteControlView
+        android:id="@+id/remote_control_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        app:circleControlColor="#6d717a"
+        app:circleControlInnerColor="#6d717a"
+        app:circleControlStrokeWidth="0.5dp"
+        app:circleControlStrokeWidthMoving="0.5dp"
+        app:circleInnerColor="#6d717a"
+        app:circleInnerColorMoving="#6d717a"
+        app:circleInnerOuterColor="#6d717a"
+        app:circleInnerOuterColorMoving="#6d717a"
+        app:circleInnerOuterStrokeWidth="1dp"
+        app:circleInnerOuterStrokeWidthMoving="1dp"
+        app:circleInnerStrokeWidth="1dp"
+        app:circleInnerStrokeWidthMoving="1dp"
+        app:circleOuterInnerRadiusFraction="0.75"
+        app:circleOuterInnerRadiusFractionMoving="0.75"
+        app:circleOuterInnerStrokeWidth="1dp"
+        app:circleOuterInnerStrokeWidthMoving="1dp"
+        app:circleOuterRadiusFraction="0.8"
+        app:circleOuterRadiusFractionMoving="0.8"
+        app:circleOuterStrokeWidth="1dp"
+        app:circleOuterStrokeWidthMoving="1dp"
+        app:directionTextSize="15sp"
+        app:directionTextSizeMoving="15sp"
+        app:directionTriangleEdge="10dp"
+        app:directionTriangleEdgeMoving="10dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Switch
+            android:id="@+id/switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开关"
+            android:textColor="@android:color/white"
+            android:textOff="关闭"
+            android:textOn="开启" />
+
+        <RadioGroup
+            android:id="@+id/rg_control_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_gesture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="触控模式"
+                android:textColor="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/rb_gravity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重力感应模式"
+                android:textColor="@color/colorAccent" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
