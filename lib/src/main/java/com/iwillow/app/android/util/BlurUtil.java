@@ -15,7 +15,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by iwillow on 2017/10/9.
+ * Created by iwillow on 2017/10/2.
  * <p>
  * Gaussian Blur utility class
  * </p>
