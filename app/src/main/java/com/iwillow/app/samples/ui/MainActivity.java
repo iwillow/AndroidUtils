@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_step_view).setOnClickListener(this);
         findViewById(R.id.btn_movie_gallery).setOnClickListener(this);
         findViewById(R.id.btn_color_scale).setOnClickListener(this);
-        findViewById(R.id.btn_color_scale).setOnClickListener(this);
         findViewById(R.id.btn_simple_remote_control).setOnClickListener(this);
         findViewById(R.id.btn_cool_remote_control_a).setOnClickListener(this);
         findViewById(R.id.btn_cool_remote_control_b).setOnClickListener(this);
