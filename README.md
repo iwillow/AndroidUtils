@@ -1,6 +1,11 @@
 # AndroidUtils
 This is my personal code lab.
 
+## download
+
+You can directly download the apk from [here](https://github.com/iwillow/AndroidUtils/blob/master/apk/demo_app.apk) or scan the following QR code . 
+![APK](https://github.com/iwillow/AndroidUtils/blob/master/screenshots/download_qr.png)
+
 ## StepView (including horizontal StepView and vertical StepView)
 Please see the usage from [StepActivity](https://github.com/iwillow/AndroidUtils/blob/master/app/src/main/java/com/iwillow/app/samples/ui/StepActivity.java),
 or refer [HorizontalStepView](https://github.com/iwillow/AndroidUtils/blob/master/lib/src/main/java/com/iwillow/app/android/ui/view/HorizontalStepView.java) and
