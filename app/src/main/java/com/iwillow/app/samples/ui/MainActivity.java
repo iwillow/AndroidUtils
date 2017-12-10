@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_simple_remote_control).setOnClickListener(this);
         findViewById(R.id.btn_cool_remote_control_a).setOnClickListener(this);
         findViewById(R.id.btn_cool_remote_control_b).setOnClickListener(this);
+        findViewById(R.id.btn_jd_center).setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_cool_remote_control_b:
                 intent = new Intent(v.getContext(), CoolBRemoteControlActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_jd_center:
+                intent = new Intent(v.getContext(), CenterItemActivity.class);
                 startActivity(intent);
                 break;
         }

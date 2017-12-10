@@ -52,6 +52,12 @@
             android:layout_height="wrap_content"
             android:text="@string/name_cool_remote_control_b_activity" />
 
+        <Button
+            android:id="@+id/btn_jd_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_jd_center_activity" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

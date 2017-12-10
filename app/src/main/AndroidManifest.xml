@@ -38,14 +38,14 @@
         <activity
             android:name=".ui.CoolARemoteControlActivity"
             android:label="@string/name_cool_remote_control_a_activity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.CoolBRemoteControlActivity"
             android:label="@string/name_cool_remote_control_b_activity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.CenterItemActivity"
+          android:label="@string/name_jd_center_activity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@
     <string name="name_simple_remote_control_activity">遥控器（简易版）</string>
     <string name="name_cool_remote_control_a_activity">遥控器（炫酷版A）</string>
     <string name="name_cool_remote_control_b_activity">遥控器（炫酷版B）</string>
+    <string name="name_jd_center_activity">仿京东商城侧边栏分类</string>
     <string name="name_movie_gallery_activity">仿淘票票画廊选择器</string>
     <string name="title_activity_main">功能列表</string>
     <string name="name_color_scale_activity">颜色选择器</string>
