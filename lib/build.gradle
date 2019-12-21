@@ -1,17 +1,21 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.github.dcendents.android-maven'
 
-/*
-buildscript {
-    repositories {
-        jcenter()
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
     }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.4.0'
+    maven{
+        url 'https://maven.aliyun.com/repository/google'
     }
+    maven{
+        url 'https://maven.aliyun.com/repository/jcenter'
+    }
+    maven { url "https://jitpack.io" }
 }
-*/
 
+group='com.github.iwillow'
+version = '0.0.1'
 
 android {
     compileSdkVersion Integer.valueOf(compile_sdk_version)
@@ -36,17 +40,6 @@ android {
     }
 }
 
-/*
-publish {
-    userOrg = 'iwillowtech'
-    groupId = 'com.iwillow.app.android'
-    artifactId = 'android-utils'
-    publishVersion = '0.0.1'
-    desc = 'This is my personal android code note'
-    website = 'https://github.com/iwillow/AndroidUtils'
-}
-*/
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -56,4 +49,29 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:design:$support_version"
     testImplementation 'junit:junit:4.12'
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+task classesJar(type: Jar) {
+    from "$buildDir/intermediates/classes/release"
+}
+
+artifacts {
+    archives classesJar
+    archives javadocJar
+    archives sourcesJar
 }
